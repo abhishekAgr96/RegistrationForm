@@ -1,0 +1,30 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h1 align="center">Sign Up</h1> 
+<form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()" >
+    <input type="text" placeholder="First Name" formControlName="fname">
+    <span *ngIf="myFormGroup.controls['fname'].hasError('required')">*</span>
+    <span *ngIf="myFormGroup.controls['fname'].invalid  && (myFormGroup.controls['fname'].dirty || myFormGroup.controls['fname'].touched)">Only Charactors</span><br/> 
+    
+    <input type="text" placeholder="Last Name" formControlName="lname">
+    <span *ngIf="myFormGroup.controls['lname'].hasError('required')">*</span>
+    <span *ngIf="myFormGroup.controls['lname'].invalid  && (myFormGroup.controls['lname'].dirty || myFormGroup.controls['lname'].touched)">Only Charactors</span><br/> 
+
+    <input type="text" placeholder="Gender" formControlName="gender" maxlength="1">
+    <span *ngIf="myFormGroup.controls['gender'].hasError('required')">*</span>
+    <span *ngIf="myFormGroup.controls['gender'].invalid && (myFormGroup.controls['gender'].dirty || myFormGroup.controls['gender'].touched)">Can take only 'M' or 'F' as Input</span><br/>
+    
+    <input type="text" placeholder="Contact No." formControlName="contactNo" maxlength="10">
+    <span *ngIf="myFormGroup.controls['contactNo'].hasError('minlength')">min 10 digits</span>
+    <span *ngIf="!myFormGroup.controls['contactNo'].valid && (myFormGroup.controls['contactNo'].dirty || myFormGroup.controls['contactNo'].touched)">Only digit are allowed</span><br/>
+    
+    <input type="text" placeholder="Password" formControlName="password" >
+    <span *ngIf="myFormGroup.controls['password'].hasError('required')">*</span>
+    <span *ngIf="!myFormGroup.controls['password'].valid && (myFormGroup.controls['password'].dirty || myFormGroup.controls['password'].touched)" >1 Small Char, 1 Chaps, 1 Special Char, 1 digit required</span><br/>
+    
+    <input type="text" placeholder="Confirm Password" formControlName="confirmPassword" (keyup)="checkPassword()">
+    <span *ngIf="!checkPass && (myFormGroup.controls['confirmPassword'].dirty || myFormGroup.controls['confirmPassword'].touched)">Password Not Matched</span><br/>
+    
+    <input type="text" placeholder="Employee ID" formControlName="empId">
+    <span *ngIf="!myFormGroup.controls['empId'].valid && (myFormGroup.controls['lname'].dirty || myFormGroup.controls['lname'].touched)">Only 4 digits</span><br/>
+    <button type="submit" [disabled]="!myFormGroup.valid" >Sign Up</button>
+  </form>
